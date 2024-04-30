@@ -40,7 +40,7 @@ class CategoryProduct(BaseModel):
     self.changed_by = value
   
   def __str__(self):
-    self.description
+    return self.description
 
   class Meta:
     verbose_name = 'Categoria de producto'
