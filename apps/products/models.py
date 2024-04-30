@@ -21,7 +21,7 @@ class MeasureUnit(BaseModel):
   
   
   def __str__(self):
-    return self.description
+    return f'{self.id} {self.description}'
 
   class Meta:
     verbose_name = 'Unidad de medida'
@@ -40,7 +40,7 @@ class CategoryProduct(BaseModel):
     self.changed_by = value
   
   def __str__(self):
-    return self.description
+    return f'{self.id} {self.description}'
 
   class Meta:
     verbose_name = 'Categoria de producto'
