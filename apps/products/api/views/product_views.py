@@ -3,7 +3,14 @@ from apps.products.models import Product
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
+from drf_spectacular.types import OpenApiTypes
 
+
+@extend_schema(
+  request=ProductSerializer,
+  responses={200: ProductSerializer(Product, many = True)}, 
+)
 @api_view(['GET', 'POST'])
 def product_api_view(request):
   if request.method == 'GET':

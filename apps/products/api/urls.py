@@ -7,6 +7,6 @@ urlpatterns = [
   path('measure_unit', MeasureUnitList, name='measure_unit'),
   path('indicator_list', IndicatorList, name='indicator_list'),
   path('category_product_list', CategoryProductList, name='category_product_list'),
-  path('product/', product_api_view, name='product'),
+  path('products/', product_api_view, name='product'),
   path('product/<int:pk>', product_detail_api_view, name='product_detail')
 ]

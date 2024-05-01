@@ -4,13 +4,11 @@ from apps.products.models import MeasureUnit, Indicator, CategoryProduct
 from apps.products.api.serializers.general_serializers import *
 from rest_framework.response import Response
 from rest_framework import status
-#solo vamos a necesitar el listado, no haremos un crud para estos modelos
-# class MeasureUnitListAPIView(generics.ListAPIView):
-#   # a cual serializador pertenece
-#   serializer_class = MeasureUnitSerializer
-  
-#   def get_queryset(self):
-#     return MeasureUnit.objects.filter(state = True)
+from drf_spectacular.utils import extend_schema
+
+@extend_schema(
+  responses={200: MeasureUnitSerializer(MeasureUnit, many = True)}, 
+)
 
 @api_view(['GET'])
 def MeasureUnitList(request):
@@ -21,6 +19,10 @@ def MeasureUnitList(request):
   else:
     return Response({'message':'Metodo no permitido'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+@extend_schema(
+  responses={200: CategoryProductSerializer(CategoryProduct, many = True)}, 
+)
+
 @api_view(['GET'])
 def CategoryProductList(request):
   if request.method == 'GET':
@@ -29,6 +31,10 @@ def CategoryProductList(request):
     return Response(categoryProduct_serializer.data, status=status.HTTP_200_OK)
   else:
     return Response({'message':'Metodo no permitido'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+@extend_schema(
+  responses={200: IndicatorSerializer(Indicator, many = True)}, 
+)
 
 @api_view(['GET'])
 def IndicatorList(request):
