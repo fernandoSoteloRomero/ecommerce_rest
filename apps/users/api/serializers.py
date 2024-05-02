@@ -1,6 +1,13 @@
 from rest_framework import serializers
 from apps.users.models import User
 
+
+class UserTokenSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ('username','email', 'name', 'last_name')
+
+
 #modelSerializer porque hara un serializador de un modelo
 #convertir una instancia de un modelo en especifico en un JSON
 class UserSerializer(serializers.ModelSerializer):
