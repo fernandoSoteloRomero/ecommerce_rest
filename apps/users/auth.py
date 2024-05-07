@@ -6,6 +6,18 @@ from apps.users.api.serializers import UserTokenSerializer
 from django.contrib.sessions.models import Session
 from datetime import datetime
 from rest_framework.views import APIView
+
+
+class UserToken(APIView):
+  def get(self, request, *args, **kwargs):
+    username = request.GET.get('username')
+    try:
+      user_token = Token.objects.get(user = UserTokenSerializer().Meta.model.objects.filter(username = username).first())
+      return Response({'token': user_token.key})
+    except:
+      return Response({'error': 'credenciales enviadas incorrectas'}, status=status.HTTP_400_BAD_REQUEST)
+
+
 #hereda de api view
 class Login(ObtainAuthToken):
   #nos llegara el usuario y la contraseña

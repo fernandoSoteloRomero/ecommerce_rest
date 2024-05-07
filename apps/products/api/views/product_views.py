@@ -1,9 +1,8 @@
 from rest_framework import generics, status, viewsets
 from apps.products.api.serializers.product_serializers import ProductSerializer
 from rest_framework.response import Response
-
-
-class ProductViewSet(viewsets.ModelViewSet):
+from apps.users.authentication_mixins import Authentication
+class ProductViewSet(Authentication, viewsets.ModelViewSet):
   serializer_class = ProductSerializer
   queryset = ProductSerializer.Meta.model.objects.filter(state = True)
   

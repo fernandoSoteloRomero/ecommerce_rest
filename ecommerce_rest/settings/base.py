@@ -30,8 +30,8 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.products',
     'apps.base',
-   'drf_spectacular',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -122,4 +122,4 @@ SPECTACULAR_SETTINGS = {
     # OTHER SETTINGS
 }
 
-TOKEN_EXPIRED_AFTER_SECONDS = 10
+TOKEN_EXPIRED_AFTER_SECONDS = 900
