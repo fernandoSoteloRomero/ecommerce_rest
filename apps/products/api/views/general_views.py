@@ -28,8 +28,26 @@ class MeasureunitViewSet(viewsets.GenericViewSet):
   
   
 class IndicatorViewSet(viewsets.ViewSet):
+  model = Indicator
   serializer_class = IndicatorSerializer
+  queryset = IndicatorSerializer.Meta.model.objects.filter(state=True)
+
+  def list(self, request):
+    """
+      
+    """
+    # Obtener todas las unidades de medida del queryset
+    indicators_list = self.queryset
+
+    # Serializar las unidades de medida
+    serializer = self.serializer_class(indicators_list, many=True)
+
+    # Devolver la respuesta serializada
+    return Response(serializer.data)  
   
   
 class CategoryProductViewSet(viewsets.ViewSet):
+  model = CategoryProduct
   serializer_class = CategoryProductSerializer
+  queryset = CategoryProductSerializer.Meta.model.objects.filter(state=True)
+  

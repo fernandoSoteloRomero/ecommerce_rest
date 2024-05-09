@@ -22,14 +22,18 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Login.as_view(), name='Login'),
-    path('logout/', Logout.as_view(), name='Logout'),
-    path( 'usuario/', include('apps.users.api.urls') ),
-    path( 'products/', include('apps.products.api.routers') ),
+    
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('refresh-token', UserToken.as_view(), name='refresh_token')
+    
+    path('login/', Login.as_view(), name='Login'),
+    path('logout/', Logout.as_view(), name='Logout'),
+    
+    path('refresh-token/', UserToken.as_view(), name='refresh_token'),
+    
+    path( 'usuario/', include('apps.users.api.urls') ),
+    path( 'products/', include('apps.products.api.routers') ),
 
     
 ]

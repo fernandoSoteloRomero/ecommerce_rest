@@ -31,10 +31,12 @@ INSTALLED_APPS = [
     'apps.products',
     'apps.base',
     'rest_framework.authtoken',
-    'drf_yasg'
+    'drf_yasg',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -113,6 +115,14 @@ REST_FRAMEWORK = {
     # YOUR SETTINGS
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com"
+]
+
+CORS_ORIGIN_WHITELIST = [
+    "https://example.com"
+]
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Your Project API',
