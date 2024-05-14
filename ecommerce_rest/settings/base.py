@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'apps.products',
     'apps.base',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'drf_yasg',
     'corsheaders'
 ]
@@ -90,7 +91,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
 TIME_ZONE = 'UTC'
 
@@ -117,11 +118,13 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://example.com"
+    "http://localhost:57570",
+    "http://localhost:4200",
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    "https://example.com"
+    "http://localhost:57570",
+    "http://localhost:4200",
 ]
 
 SPECTACULAR_SETTINGS = {
@@ -132,4 +135,11 @@ SPECTACULAR_SETTINGS = {
     # OTHER SETTINGS
 }
 
-TOKEN_EXPIRED_AFTER_SECONDS = 900
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
