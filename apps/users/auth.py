@@ -30,14 +30,14 @@ class Login(TokenObtainPairView):
         user_serializer = CustomSerializer(user)
         return Response({
           'token': login_serializer.validated_data.get('access'),
-          'refresh-token': login_serializer.validated_data.get('refresh'),
+          'refresh_token': login_serializer.validated_data.get('refresh'),
           'user': user_serializer.data,
           'message':'Inicio de sesión exitoso'
         }, status=status.HTTP_200_OK
                         )
         
-      return Response({'error':'Usuario o contraseña incorrectos'})
-    return Response({'error':'Usuario o contraseña incorrectos'})
+      return Response({'message':'Usuario o contraseña incorrectos'}, status=status.HTTP_401_UNAUTHORIZED)
+    return Response({'message':'Usuario o contraseña incorrectos'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 
@@ -47,7 +47,7 @@ class Logout(GenericAPIView):
     if user.exist():
       RefreshToken.for_user(user.first())
       return Response({'message':'Sesión  cerrada correctamente'}, status=status.HTTP_200_OK)
-    return Response({'error':'Usuario no existe'}, status=status.HTTP_400_BAD_REQUEST)
+    return Response({'message':'Usuario no existe'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 

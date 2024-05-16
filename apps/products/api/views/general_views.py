@@ -51,3 +51,13 @@ class CategoryProductViewSet(viewsets.ViewSet):
   serializer_class = CategoryProductSerializer
   queryset = CategoryProductSerializer.Meta.model.objects.filter(state=True)
   
+  def list(self, request):
+  # Obtener todas las unidades de medida del queryset
+    category_products = self.queryset
+
+  # Serializar las unidades de medida
+    serializer = self.serializer_class(category_products, many=True)
+
+  # Devolver la respuesta serializada
+    return Response(serializer.data)  
+  

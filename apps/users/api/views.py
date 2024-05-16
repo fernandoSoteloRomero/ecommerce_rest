@@ -37,7 +37,7 @@ def user_api_view(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_detail_api_view(request, pk= None):
   #Consulta, queryset
-  user = User.objects.filter(username = pk).first()
+  user = User.objects.filter(id = pk).first()
   
   #Validacion
   if user:
